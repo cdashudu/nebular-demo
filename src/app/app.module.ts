@@ -15,9 +15,11 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbListModule,
-  NbIconModule,
+  NbIconModule, NbLayoutModule,
 } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,11 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     BrowserModule,
     AppRoutingModule,
     Ng2SmartTableModule,
-    NbThemeModule.forRoot()
+    NbThemeModule.forRoot(),
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbEvaIconsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
