@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { FormControl } from '@angular/forms';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-nb-tree-grid-showcase',
@@ -14,7 +15,6 @@ export class NbTreeGridShowcaseComponent implements OnInit {
   availableColums = ["name", "email", "username" ]
   constructor() {
     this.source = new LocalDataSource(this.data); // create the source
-
    }
 
   ngOnInit(): void {
@@ -99,14 +99,15 @@ console.log(query)
     // 'AND' by default, so changing to 'OR' by setting false here
   }
   onSelectionChange(event){
-    let difference = this.availableColums.filter(x => !this.selectedItemNgModel.includes(x));
-
-    this.selectedItemNgModel.forEach(element => {
-      this.settings.columns[element].hide = true
+    console.log(event)
+    let difference = this.availableColums.filter(x => !event.includes(x));
+    
+    event.forEach(element => {
+      this.settings.columns[element].hide = false
     });
 
     difference.forEach(element => {
-      this.settings.columns[element].hide = false
+      this.settings.columns[element].hide = true
     });
 
     this.settings = Object.assign({}, this.settings)

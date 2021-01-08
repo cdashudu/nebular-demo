@@ -6,7 +6,8 @@
   
     <nb-card-body>
       <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
-      <nb-select multiple placeholder="Multiple Select" [(ngModel)]="selectedItemNgModel" (selectedChange)="onSelectionChange($event)"  [(selected)]="availableColums">
+      <!-- <nb-select  multiple placeholder="Multiple Select" [formControlName]="selectedItemFormControl"> -->
+        <nb-select  multiple placeholder="Multiple Select" (selectedChange)="onSelectionChange($event)"  [(selected)]="availableColums">
         <nb-option value="name">Full Name</nb-option>
         <nb-option value="username">Username</nb-option>
         <nb-option value="email">Email</nb-option>
