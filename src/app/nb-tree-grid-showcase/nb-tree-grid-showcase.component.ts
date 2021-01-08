@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalDataSource } from 'ng2-smart-table';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-nb-tree-grid-showcase',
@@ -6,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nb-tree-grid-showcase.component.css']
 })
 export class NbTreeGridShowcaseComponent implements OnInit {
+  source: LocalDataSource; // add a property to the component
+  selectedItemNgModel
+  selectedItemFormControl = new FormControl();
+  availableColums = ["name", "email", "username" ]
+  constructor() {
+    this.source = new LocalDataSource(this.data); // create the source
 
-  constructor() { }
+   }
 
   ngOnInit(): void {
   }
@@ -15,16 +23,24 @@ export class NbTreeGridShowcaseComponent implements OnInit {
   settings = {
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        filter: false,
+        hide: false
       },
       name: {
-        title: 'Full Name'
+        title: 'Full Name',
+        filter: false,
+        hide: false
       },
       username: {
-        title: 'User Name'
+        title: 'User Name',
+        filter: false,
+        hide: false
       },
       email: {
-        title: 'Email'
+        title: 'Email',
+        filter: false,
+        hide: false
       }
     }
   };
@@ -50,5 +66,50 @@ export class NbTreeGridShowcaseComponent implements OnInit {
       email: "Rey.Padberg@rosamond.biz"
     }
   ];
+
+  onSearch(query: string = '') {
+console.log(query)
+    if(query == ''){
+      this.source = new LocalDataSource(this.data); // create the source
+    }
+    else{
+      this.source.setFilter([
+        // fields we want to include in the search
+        {
+          field: 'id',
+          search: query
+        },
+        {
+          field: 'name',
+          search: query
+        },
+        {
+          field: 'username',
+          search: query
+        },
+        {
+          field: 'email',
+          search: query
+        }
+      ], false); 
+    }
+ 
+    // second parameter specifying whether to perform 'AND' or 'OR' search 
+    // (meaning all columns should contain search query or at least one)
+    // 'AND' by default, so changing to 'OR' by setting false here
+  }
+  onSelectionChange(event){
+    let difference = this.availableColums.filter(x => !this.selectedItemNgModel.includes(x));
+
+    this.selectedItemNgModel.forEach(element => {
+      this.settings.columns[element].hide = true
+    });
+
+    difference.forEach(element => {
+      this.settings.columns[element].hide = false
+    });
+
+    this.settings = Object.assign({}, this.settings)
+  }
 
 }

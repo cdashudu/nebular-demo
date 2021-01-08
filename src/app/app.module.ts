@@ -20,6 +20,7 @@ import {
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbTreeGridShowcaseComponent
   ],
   imports: [
+    FormsModule,
     NbActionsModule,
     NbButtonModule,
     NbCardModule,

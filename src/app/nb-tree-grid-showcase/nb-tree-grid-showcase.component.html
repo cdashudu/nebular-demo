@@ -5,7 +5,13 @@
     </nb-card-header>
   
     <nb-card-body>
-      <ng2-smart-table [settings]="settings" [source]="data">
+      <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
+      <nb-select multiple placeholder="Multiple Select" [(ngModel)]="selectedItemNgModel" (selectedChange)="onSelectionChange($event)"  [(selected)]="availableColums">
+        <nb-option value="name">Full Name</nb-option>
+        <nb-option value="username">Username</nb-option>
+        <nb-option value="email">Email</nb-option>
+      </nb-select>
+      <ng2-smart-table [settings]="settings" [source]="source">
       </ng2-smart-table>
     </nb-card-body>
   </nb-card>
