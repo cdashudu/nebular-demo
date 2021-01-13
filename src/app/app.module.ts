@@ -21,6 +21,9 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NgxKeyboardShortcutModule } from 'ngx-keyboard-shortcuts';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbTreeGridShowcaseComponent
   ],
   imports: [
+    NgxKeyboardShortcutModule,
+    MatTabsModule,
     ReactiveFormsModule,
     FormsModule,
     NbActionsModule,
